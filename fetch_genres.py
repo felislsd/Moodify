@@ -1,11 +1,12 @@
 #!/usr/bin/python3
+
 import requests
-import base64
 import json
 from dotenv import load_dotenv
 import os
-import time
+import base64
 
+# Load environment variables from .env file
 load_dotenv()
 
 client_id = os.getenv('CLIENT_ID')
@@ -24,30 +25,27 @@ def get_spotify_token(client_id, client_secret):
     response = requests.post(auth_url, headers=headers, data=data)
     if response.status_code == 200:
         token_info = response.json()
-        token_info['timestamp'] = int(time.time())
-        # Save token to a file
-        with open('token.json', 'w') as token_file:
-            json.dump(token_info, token_file)
         return token_info['access_token']
     else:
         raise Exception(f"Failed to get token. Status code: {response.status_code}\n{response.text}")
 
-def read_saved_token():
-    try:
-        with open('token.json', 'r') as token_file:
-            token_info = json.load(token_file)
-        return token_info
-    except FileNotFoundError:
-        return None
-
-
-def get_access_token():
-    token_info = read_saved_token()
-    if token_info:
-        current_time = int(time.time())
-        if 'timestamp' in token_info and current_time - token_info['timestamp'] < token_info['expires_in']:
-            return token_info['access_token']
-        else:
-            return get_spotify_token(client_id, client_secret)
+def get_available_genres(token):
+    url = "https://api.spotify.com/v1/recommendations/available-genre-seeds"
+    headers = {
+        "Authorization": f"Bearer {token}"
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json().get('genres', [])
     else:
-        return get_spotify_token(client_id, client_secret)
+        print(f"Failed to get available genres. Status code: {response.status_code}\n{response.text}")
+        return []
+
+if __name__ == "__main__":
+    access_token = get_spotify_token(client_id, client_secret)
+    available_genres = get_available_genres(access_token)
+    
+    with open('available_genres.json', 'w') as f:
+        json.dump(available_genres, f, indent=4)
+    
+    print(f"Available genres saved to available_genres.json")

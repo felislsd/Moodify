@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from spotify_auth import get_spotify_token, read_saved_token
+from spotify_auth import get_access_token #, get_spotify_token, read_saved_token
 from spotify_search import get_recommendations_by_mood
 from mood_to_genre_mapping import get_genres_for_mood
 from dotenv import load_dotenv
@@ -21,40 +21,38 @@ def detect_emotion(text):
 
 if __name__ == "__main__":
     # Read saved token or get a new one
-    access_token = read_saved_token()
-    if not access_token:
-        client_id = os.getenv('CLIENT_ID')
-        client_secret = os.getenv('CLIENT_SECRET')
-        access_token = get_spotify_token(client_id, client_secret)
-
-
-    # Take user input for text describing mood
-    #user_text = input("Enter your mood (e.g., happy, sad, relaxed, energetic, angry, anxious): ").strip().lower()
-
     # Take user input for text describing mood
     user_text = input("How was your day: ").strip().lower()
 
-    # Get genres for the given mood
-    #genres = get_genres_for_mood(user_text)
-
-    # Detect emotion from the text input
+        # Detect emotion from the text input
     detected_emotion = detect_emotion(user_text)
     print(f"Detected emotion: {detected_emotion}")
 
     # Get genres for the detected emotion
     genres = get_genres_for_mood(detected_emotion)
 
+    # access_token = read_saved_token()
+    # if not access_token:
+    #     client_id = os.getenv('CLIENT_ID')
+    #     client_secret = os.getenv('CLIENT_SECRET')
+    #     access_token = get_spotify_token(client_id, client_secret)
+
+
+    # Take user input for text describing mood
+    #user_text = input("Enter your mood (e.g., happy, sad, relaxed, energetic, angry, anxious): ").strip().lower()
+
     if not genres:
         print(f"No available genres found for mood '{user_text}'. Please try a different mood.")
     else:
-      
+        # Get a valid access token before making the request
+        access_token = get_access_token()
 
         # Get recommendations based on the mapped Spotify genres
         try:
             tracks = []
             for genre in genres:
                 tracks.extend(get_recommendations_by_mood(genre, access_token))
-            
+
             if not tracks:
                 print("No recommendations found for this mood. Please try a different mood.")
             else:

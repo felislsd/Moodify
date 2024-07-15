@@ -9,13 +9,13 @@ available_genres = {genre['name'].lower() for genre in genres_data}
 
 # Define a mapping from detected emotions to Spotify genres
 mood_to_genres = {
-    "joy": ["pop", "dance-pop", "happy", "party", "funk", "disco"],
-    "sadness": ["blues", "sad", "acoustic blues", "soul blues", "gospel blues"],
-    "anger": ["metal", "heavy metal", "hard rock", "punk", "hardcore"],
-    "fear": ["ambient", "minimal", "drone", "meditation", "new age"],
-    "surprise": ["electronic", "experimental", "avant-garde", "psychedelic"],
-    "love": ["Romantic", "love songs", "Soft Rock", "R&b"],
-    #"love": ["romantic", "Lovers Rock", "soft rock", "r&b"],
+    "joy": ["pop", "dance", "happy", "party", "funk", "disco"],
+    "sadness": ["blues", "sad", "soul"],
+    "anger": ["death-metal", "heavy-metal", "hard-rock", "punk", "punk-rock"],
+    "fear": ["ambient", "minimal-techno", "new age"],
+    "surprise": ["electronic"],
+    "love": ["romance", "r-n-b"],
+  
 }
 
 # Function to get genres for a detected mood
