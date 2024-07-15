@@ -13,6 +13,12 @@ load_dotenv()
 # Load the emotion detection model
 emotion_classifier = pipeline("text-classification", model="bhadresh-savani/distilbert-base-uncased-emotion")
 
+def detect_emotion(text):
+    predictions = emotion_classifier(text)
+    # Get the emotion with the highest score
+    top_emotion = max(predictions, key=lambda x: x['score'])
+    return top_emotion['label']
+
 if __name__ == "__main__":
     # Read saved token or get a new one
     access_token = read_saved_token()

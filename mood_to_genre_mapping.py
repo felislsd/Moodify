@@ -14,7 +14,8 @@ mood_to_genres = {
     "anger": ["metal", "heavy metal", "hard rock", "punk", "hardcore"],
     "fear": ["ambient", "minimal", "drone", "meditation", "new age"],
     "surprise": ["electronic", "experimental", "avant-garde", "psychedelic"],
-    "love": ["romantic", "love songs", "soft rock", "r&b"],
+    "love": ["Romantic", "love songs", "Soft Rock", "R&b"],
+    #"love": ["romantic", "Lovers Rock", "soft rock", "r&b"],
 }
 
 # Function to get genres for a detected mood
