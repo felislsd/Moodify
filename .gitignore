@@ -59,3 +59,4 @@ venv.bak/
 .env
 token.json
 test_dotenv.py
+check_cuda.py
