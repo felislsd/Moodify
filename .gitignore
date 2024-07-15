@@ -60,3 +60,4 @@ venv.bak/
 token.json
 test_dotenv.py
 check_cuda.py
+fetch_genres.py
