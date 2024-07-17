@@ -33,19 +33,19 @@ cd moodify
 3. **Create ".env" file:**
 
 
-FLASK_APP=main.py  
+        FLASK_APP=main.py  
 
-FLASK_ENV=development #for debugging purposes  
+        FLASK_ENV=development #for debugging purposes  
 
-CLIENT_ID='xxx'  
+        CLIENT_ID='xxx'  
 
-CLIENT_SECRET='yyy'  
+        CLIENT_SECRET='yyy'  
 
 
 
 4. **Install the dependencies:**
 
-pip install -r requirements.txt
+        pip install -r requirements.txt
 
 5. **flask run :)**
 
