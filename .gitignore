@@ -64,5 +64,5 @@ fetch_genres.py
 howManySongs.py
 genre_counts.txt
 genre_counts_non_zero.txt
-removeAllZeroRows
-# search _love_song.py
+removeAllZeroRows.py
+search_love_song.py
