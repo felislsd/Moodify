@@ -32,7 +32,7 @@ cd moodify
 
 3. **Create ".env" file:**
 
-'''
+'''sh
 FLASK_APP=main.py
 FLASK_ENV=development #for debugging purposes
 CLIENT_ID='xxx'
