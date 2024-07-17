@@ -25,10 +25,10 @@
 ### How to run it?
 
 1. **Clone the Repository**:
-        git clone https://github.com/your-username/moodify.git  
-
+        git clone https://github.com/felislsd/Moodify.git  
+          
         cd moodify  
-        
+
 
 2. **Create Spotify Developer account to obtain API credentials**
 
