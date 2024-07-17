@@ -17,8 +17,9 @@ mood_to_genres = {
     "sadness": ["blues", "soul"],
     "anger": ["metal", "punk"],
     "fear": ["ambient", "minimal techno" ],
+    "love": ["lounge house", "r&b", "romantic", "lovers rock"],
     "surprise": ["electronic", "glitch"],
-    "love": ["r&b", "romantic"],
+    
 
 }
 
