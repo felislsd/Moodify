@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-from spotify_auth import get_access_token #, get_spotify_token, read_saved_token
-from spotify_search import get_recommendations_by_mood
+from spotify_auth import get_access_token
+from spotify_search import get_recommendations_by_mood, request_counter
 from mood_to_genre_mapping import get_genres_for_mood
 from dotenv import load_dotenv
 import os
@@ -20,26 +20,16 @@ def detect_emotion(text):
     return top_emotion['label']
 
 if __name__ == "__main__":
-    # Read saved token or get a new one
     # Take user input for text describing mood
     user_text = input("How was your day: ").strip().lower()
 
-        # Detect emotion from the text input
+    # Detect emotion from the text input
     detected_emotion = detect_emotion(user_text)
     print(f"Detected emotion: {detected_emotion}")
 
     # Get genres for the detected emotion
     genres = get_genres_for_mood(detected_emotion)
-
-    # access_token = read_saved_token()
-    # if not access_token:
-    #     client_id = os.getenv('CLIENT_ID')
-    #     client_secret = os.getenv('CLIENT_SECRET')
-    #     access_token = get_spotify_token(client_id, client_secret)
-
-
-    # Take user input for text describing mood
-    #user_text = input("Enter your mood (e.g., happy, sad, relaxed, energetic, angry, anxious): ").strip().lower()
+    print(f"Matched genres for emotion '{detected_emotion}': {genres}")
 
     if not genres:
         print(f"No available genres found for mood '{user_text}'. Please try a different mood.")
@@ -51,16 +41,25 @@ if __name__ == "__main__":
         try:
             tracks = []
             for genre in genres:
-                tracks.extend(get_recommendations_by_mood(genre, access_token))
+                tracks.extend(get_recommendations_by_mood([genre], access_token))
 
             if not tracks:
                 print("No recommendations found for this mood. Please try a different mood.")
             else:
-                print("Based on your mood, we recommend these songs:")
-                for track in tracks:
+                current_index = 0
+                while True:
+                    track = tracks[current_index]
                     track_name = track['name']
                     artist_name = track['artists'][0]['name']
                     track_link = track['external_urls']['spotify']
                     print(f"- {track_name} by {artist_name} - [Listen]({track_link})")
+
+                    user_input = input("Do you want to listen to another recommendation? (yes/no): ").strip().lower()
+                    if user_input == 'no':
+                        print("Thank you! Enjoy your music!")
+                        break
+                    current_index = (current_index + 1) % len(tracks)
         except Exception as e:
             print(f"An error occurred: {e}")
+        finally:
+            print(f"Total requests made: {request_counter}")
