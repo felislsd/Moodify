@@ -22,6 +22,27 @@
 
 - **`spotify_search.py`**: This file contains functions to interact with the Spotify API for searching and fetching song recommendations based on the detected mood. It manages API requests, handles rate limiting, and processes the responses to extract relevant song information.
 
+### How to run it?
+
+1. **Clone the Repository**:
+git clone https://github.com/your-username/moodify.git
+cd moodify
+
+2. **Create Spotify Developer account to obtain API credentials**
+
+3. **Create ".env" file:**
+
+FLASK_APP=main.py
+FLASK_ENV=development #for debugging purposes
+CLIENT_ID='xxx'
+CLIENT_SECRET='yyy'
+
+4. **Install the dependencies:**
+
+pip install -r requirements.txt
+
+5. **flask run :)**
+
 
 
 
