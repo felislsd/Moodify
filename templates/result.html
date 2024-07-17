@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodify Insights</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #32CD32;
+            border-color: #32CD32;
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-secondary {
+            background-color: #2a2a2a;
+            border-color: #2a2a2a;
+            color: #ffffff;
+        }
+        .btn-secondary:hover {
+            background-color: #3a3a3a;
+            border-color: #3a3a3a;
+        }
+        .card {
+            background-color: #1c1c1c;
+            color: #ffffff;
+            margin: 0 auto;
+            max-width: 500px;
+            border-radius: 15px;
+        }
+        .card-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.5rem;
+        }
+        .card-text {
+            font-size: 1rem;
+        }
+        .card-subtitle {
+            font-size: 0.875rem;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Moodify Insights</h1>
+        <p class="mt-3">Detected emotion: <strong>{{ emotion }}</strong></p>
+        {% if track %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ track.name }}</h5>
+                <p class="card-subtitle mb-2 text-muted">by</p>
+                <p class="card-text">{{ track.artists[0].name }}</p>
+                <a href="{{ track.external_urls.spotify }}" class="btn btn-primary" target="_blank">Listen</a>
+            </div>
+        </div>
+        <form action="/refresh" method="POST" class="mt-3">
+            <input type="hidden" name="emotion" value="{{ emotion }}">
+            <button type="submit" class="btn btn-secondary">Show Another Song</button>
+        </form>
+        {% else %}
+        <p>No tracks found for this emotion.</p>
+        {% endif %}
+        <a href="/" class="btn btn-primary mt-3">I want to type something else</a>
+    </div>
+</body>
+</html>

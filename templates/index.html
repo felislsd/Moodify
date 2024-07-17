@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodify</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #32CD32;
+            border-color: #32CD32;
+            color: #ffffff;
+        }
+        .btn-primary:hover {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .form-control {
+            background-color: #1c1c1c;
+            color: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            height: 100px;
+            margin: 0 auto;
+            resize: none;
+        }
+        label {
+            color: #ffffff;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Moodify</h1>
+        <form action="/predict" method="POST" class="mt-3">
+            <div class="form-group">
+                <label for="text">How's your day going?</label>
+                <textarea class="form-control" id="text" name="text" placeholder="Enter your text" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Analyze</button>
+        </form>
+    </div>
+</body>
+</html>
