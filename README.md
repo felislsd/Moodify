@@ -6,7 +6,10 @@
 
 - Text sentiment analysis to detect user mood
 - Spotify song recommendations based on detected mood
-- Simple and intuitive web interface
+
+## Sentiment Analysis Model
+
+Moodify uses the `bhadresh-savani/distilbert-base-uncased-emotion` model for sentiment analysis.
 
 ## File Descriptions
 
