@@ -27,7 +27,8 @@ Moodify uses the `bhadresh-savani/distilbert-base-uncased-emotion` model for sen
 
 ### How to run it?
 
-1. **Clone the Repository**:
+1. **Clone the Repository**:  
+
         git clone https://github.com/felislsd/Moodify.git  
           
         cd moodify  
